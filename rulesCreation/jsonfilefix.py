@@ -1,43 +1,41 @@
 import json
-import os
+import re
 
-# CONFIG: Change these to match your filenames
-FILES_TO_FIX = ["rules1.json", "rules2.json", "rules3.json", "rules4.json"]
+#Not going to lie, had no idea how to do this had to use AI 
+FILENAME = "rules3.json" 
 
-def fix_rules_format():
-    for filename in FILES_TO_FIX:
-        if not os.path.exists(filename):
-            print(f"Skipping {filename}: File not found.")
-            continue
+def sanitize_rules(filename):
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            rules = json.load(f)
+
+        cleaned_rules = []
+        for rule in rules:
+            # 1. Clean the urlFilter
+            original_filter = rule["condition"].get("urlFilter", "")
             
-        print(f"Processing {filename}...")
-        
-        try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                # This handles the structure [ {rule}, {rule} ]
-                data = json.load(f)
+            # Remove square brackets []
+            # Remove spaces
+            # Remove leading slashes after pipes (||/)
+            clean_filter = original_filter.replace("[", "").replace("]", "").replace(" ", "")
+            clean_filter = clean_filter.replace("||/", "||")
             
-            for rule in data:
-                # 1. Fix the urlFilter syntax
-                # Changes "||/0.club^" -> "||0.club^"
-                if "condition" in rule and "urlFilter" in rule["condition"]:
-                    filt = rule["condition"]["urlFilter"]
-                    if filt.startswith("||/"):
-                        rule["condition"]["urlFilter"] = filt.replace("||/", "||", 1)
-                
-                # 2. Standardize Resource Types (Best practice for site blockers)
-                # This ensures the whole page is blocked, not just parts of it
-                rule["condition"]["resourceTypes"] = ["main_frame"]
+            # 2. Update the rule
+            rule["condition"]["urlFilter"] = clean_filter
+            
+            # 3. Only keep the rule if it's not empty/nonsense
+            if clean_filter and clean_filter != "||^":
+                cleaned_rules.append(rule)
 
-            # Save the clean version
-            output_name = filename.replace(".json", "_fixed.json")
-            with open(output_name, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=2)
-                
-            print(f"Successfully created {output_name}")
+        # Save the clean version
+        output_name = "fixed_" + filename
+        with open(output_name, 'w', encoding='utf-8') as f:
+            json.dump(cleaned_rules, f, indent=2)
+            
+        print(f"Success! {len(cleaned_rules)} rules cleaned and saved to {output_name}")
 
-        except Exception as e:
-            print(f"Error in {filename}: {e}")
+    except Exception as e:
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
-    fix_rules_format()
+    sanitize_rules(FILENAME)
