@@ -1,0 +1,51 @@
+{
+    "manifest_version": 3,
+    "name": "Ace Site Blocker",
+    "version": "1.0.0",
+    "permissions": [
+        "declarativeNetRequest",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": "content.js",
+            "run_at": "document_start"
+        }
+        
+    ],
+    "action": {
+        "default_popup": "/Index.html"
+    },
+    "background": {
+        "service_worker": "/background.js"
+    },
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "rules_file_1",
+                "enabled": true,
+                "path": "rules1.json"
+            },
+            {
+                "id": "rules_file_2",
+                "enabled": true,
+                "path": "rules2.json"
+            },
+            {
+                "id": "rules_file_3",
+                "enabled": true,
+                "path": "rules3.json"
+            },
+            {
+                "id": "rules_file_4",
+                "enabled": true,
+                "path": "rules4.json"
+            }
+        ]
+    }
+    
+}
