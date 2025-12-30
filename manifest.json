@@ -2,6 +2,7 @@
     "manifest_version": 3,
     "name": "Ace Site Blocker",
     "version": "1.0.0",
+    "description":"Blocks adult, gambling, and malicious websites to help keep users safe and focused.",
     "permissions": [
         "declarativeNetRequest",
         "storage",
@@ -21,6 +22,11 @@
     ],
     "action": {
         
+    },
+    "icons": {
+        "16": "Ace_Logo/ASB16.png",
+        "48": "Ace_Logo/ASB48.png",
+        "128": "Ace_Logo/ASB128.png"
     },
     "background": {
         "service_worker": "/background.js"

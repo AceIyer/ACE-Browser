@@ -1,34 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+
 
 body {
     font-family: 'Orbitron', sans-serif;
     background-color: #BCC6CC;
     display: flex;
-    justify-content: center;
-    padding: 20px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 30px;
+    gap: 250px;
     color: #2c3e50;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 350px; /* Standard width for an extension popup */
-    text-align: center;
-}
+
 
 header h2 {
     font-weight: 900;
     color: #1a1a1a;
     letter-spacing: 1px;
     margin-bottom: 5px;
+    padding-right: 25px;
 }
 
 header p {
@@ -41,6 +33,7 @@ header p {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 40%;
 }
 
 input {
@@ -49,6 +42,7 @@ input {
     border-radius: 8px;
     font-family: inherit; /* Keeps Orbitron in the input box */
     outline: none;
+    padding-right: 25px;
 }
 
 input:focus {
@@ -76,14 +70,18 @@ hr {
     border: 0;
     border-top: 1px solid #ccc;
 }
-
-.site-list-container h3 {
-    font-size: 0.9rem;
+.site-list{
+    gap: 10px;
+    width: 50%;
+}
+.site-item{
+    display: flex;
+    justify-content: space-between; /* name left, button right */
+    align-items: center;
+    padding: 10px;
     margin-bottom: 10px;
+    background: #e0e6ea;
+    border-radius: 8px;
+    gap: 150px;
 }
 
-.site-list {
-    max-height: 150px;
-    overflow-y: auto;
-    text-align: left;
-}
