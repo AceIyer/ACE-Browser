@@ -43,3 +43,29 @@ to stop access to unwanted websites **before they load**.
 
 1. Clone or download this repository
 2. Open your browser and go to:
+3. Enable **Developer Mode**
+4. Click **Load Unpacked**
+5. Select the project folder
+
+---
+
+## 🔧 Planned Improvements
+
+- 🧠 Smarter ad & redirect detection
+- 📜 Regularly updated blocklists
+- ⏱️ Time-based blocking (focus mode)
+- 🔐 Optional password-protected settings
+- 📊 Usage insights (blocked attempts)
+
+---
+
+## ⚠️ Disclaimer
+
+Ace Site Blocker is a **support tool**, not a replacement for professional help.  
+If you or someone you know struggles with addiction, consider seeking professional guidance.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
